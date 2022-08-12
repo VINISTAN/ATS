@@ -13,11 +13,11 @@ class _MyLoginState extends State<MyLogin> {
   late String _password;
 
   // Toggles the password show status
-  void _toggle() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
+  // void _toggle() {
+  //   setState(() {
+  //     _obscureText = !_obscureText;
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
     double myheight = MediaQuery.of(context).size.height;
@@ -130,31 +130,16 @@ class _MyLoginState extends State<MyLogin> {
                                             print("Inside onpressed");
                                           },
                                         )
-
-                                        // icon: const Padding(
-                                        //     padding: const EdgeInsets.only(top: 15.0),
-                                        //     child: const Icon(Icons.lock))
                                     ),
-                                    // decoration: InputDecoration(
-                                    //   border : InputBorder.none,
-                                    //   contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                                    //   hintText: "Password",
-                                    //
-                                    // ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                        // SizedBox(height: myheight/60,),
-                        // new TextButton(
-                        //     onPressed: _toggle,
-                        //     child: new Text(_obscureText ? "Show" : "Hide")),
                         Container(
                           height: myheight/20,
                           width: mywidth/1.5,
-
                           child:
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(

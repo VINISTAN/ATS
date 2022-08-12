@@ -7,8 +7,11 @@ import 'package:flutter/material.dart';
 //import '../screens/Roles/lead/lead_homepage.dart';
 //import 'forgot_password.dart';
 //import '../screens/Roles/lead/lead_reports/lead_reports.dart';
+import '../../practice/calender_events.dart';
 import '../../practice/demo_login.dart';
 import '../../practice/sql_Dropdown.dart';
+import '../../practice/web_app/add_employee.dart';
+import '../../practice/web_app/web_login.dart';
 import 'login.dart';
 
 
@@ -17,9 +20,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home : MyLogin(),
+
+      home: AddEmployee(),
+
+        //home : WebLoginPage()
+      //home : MyLogin(),
+      //home : CalendarPage()
       //home: DemoAppBar(),
       //home: LeadPage(),
       //home:  SplashScreen(),

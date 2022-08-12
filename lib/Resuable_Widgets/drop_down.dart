@@ -1,7 +1,7 @@
 import'package:flutter/material.dart';
 
 class AppDropdownInput<T> extends StatefulWidget {
-  final String hintText;
+   String ?  hintText;
   final List<T> options;
   final T value;
   final String Function(T) getLabel;
@@ -11,7 +11,7 @@ class AppDropdownInput<T> extends StatefulWidget {
 
 
   AppDropdownInput({
-    required this.hintText,
+     this.hintText,
     this.options = const [],
     required this.getLabel,
     required this.value,
@@ -30,7 +30,7 @@ class _AppDropdownInputState<T> extends State<AppDropdownInput<T>> {
         return InputDecorator(
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
-                horizontal: 20.0, vertical: 15.0),
+                horizontal: 10.0, vertical: 7.0),
             labelText: widget.hintText,
             border:
             OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
