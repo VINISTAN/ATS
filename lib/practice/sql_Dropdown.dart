@@ -55,36 +55,11 @@ class _DemoAppBarState extends State<DemoAppBar> {
   @override
   void initState() {
     super.initState();
-    //connect(context);
-    //read('Select name from users');
-    //selected_value = '';
   }
 
 
   @override
   Widget build(BuildContext context) {
-
-    // Future<void> read(String query) async {
-    //   var res = await SqlConn.readData(query);
-    //   var jsondata = json.decode(res);
-    //    // print(jsondata);
-    //    // print(res);
-    //    print(DropdownList);
-    //    setState((){
-    //      DropdownList = jsondata;
-    //    });
-    //   //res.toString() = new Map();
-    //   //print(res);
-    //
-    //  // List <res> names = res.tolist();
-    //   //var result = res;
-    //   // setState((){
-    //   //   DropdownList = res.toString() as List;
-    //      //print("Available names = ${DropdownList.map((users) => users['name'])}");
-    //   // });
-    //
-    // }
-
 
     Future<void> write(String query) async {
       var res = await SqlConn.writeData(query);
