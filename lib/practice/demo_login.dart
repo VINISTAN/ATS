@@ -1,8 +1,23 @@
 import'package:flutter/material.dart';
 
-class MyLogin extends StatelessWidget {
+class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
 
+  @override
+  State<MyLogin> createState() => _MyLoginState();
+}
+
+class _MyLoginState extends State<MyLogin> {
+  bool _obscureText = true;
+
+  late String _password;
+
+  // Toggles the password show status
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     double myheight = MediaQuery.of(context).size.height;
@@ -58,7 +73,7 @@ class MyLogin extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(25.0),
                           child: Container(
-                            height: myheight/6.2,
+                            height: myheight/5.5,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -78,25 +93,64 @@ class MyLogin extends StatelessWidget {
                                   child: TextField(
                                     decoration: InputDecoration(
                                         contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                                        hintText: "User Name"
+                                        hintText: "User Name",
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.green),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.green),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                      border : InputBorder.none,
-                                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                                      hintText: "Password"
+                                  child: TextFormField(
+                                    //obscureText: true,
+                                    //validator: (val) => val.length < 6 ? 'Password too short.' : null,
+                                    onSaved: (val) => _password = val.toString(),
+                                    obscureText: _obscureText,
+                                    decoration:  InputDecoration(
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(color: Colors.green),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(color: Colors.green),
+                                        ),
+                                        labelText: 'Password',
+                                        suffixIcon: IconButton(
+                                          icon: Icon(
+                                              //Icons.visibility,color:Colors.green
+                                              _obscureText ? Icons.visibility : Icons.visibility_off
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              _obscureText = !_obscureText;
+                                            });
+                                            print("Inside onpressed");
+                                          },
+                                        )
+
+                                        // icon: const Padding(
+                                        //     padding: const EdgeInsets.only(top: 15.0),
+                                        //     child: const Icon(Icons.lock))
                                     ),
+                                    // decoration: InputDecoration(
+                                    //   border : InputBorder.none,
+                                    //   contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                                    //   hintText: "Password",
+                                    //
+                                    // ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                        SizedBox(height: myheight/60,),
+                        // SizedBox(height: myheight/60,),
+                        // new TextButton(
+                        //     onPressed: _toggle,
+                        //     child: new Text(_obscureText ? "Show" : "Hide")),
                         Container(
                           height: myheight/20,
                           width: mywidth/1.5,
