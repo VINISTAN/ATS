@@ -2,11 +2,13 @@
 import 'dart:async';
 
 //import 'package:crt_project/view/Login/user_role.dart';
+
 import 'package:flutter/material.dart';
 
 //import '../screens/Roles/lead/lead_homepage.dart';
 //import 'forgot_password.dart';
 //import '../screens/Roles/lead/lead_reports/lead_reports.dart';
+import '../../practice/Login2.dart';
 import '../../practice/demo_login.dart';
 import '../../practice/sql_Dropdown.dart';
 import 'login.dart';
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home : MyLogin(),
+      home : login(),
       //home: DemoAppBar(),
       //home: LeadPage(),
       //home:  SplashScreen(),
