@@ -1,7 +1,10 @@
 import 'dart:math' as math show pi;
 
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
+import 'package:crt_project/practice/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+
 
 
 
@@ -180,8 +183,6 @@ class _girdviewState extends State<girdview> {
             selectionMode: SelectionMode.multiple,
             source: _employeeDataSource,
             columns: [
-
-
               GridColumn(
                   columnName: 'Employeeid',
                   autoFitPadding: EdgeInsets.all(8.0),
@@ -359,7 +360,14 @@ class _TestingPageState extends State<TestingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ATS"),
+        actions: [
+
+          Container(
+            height: 100,
+            width: 100,
+            child: profile(title: '',),
+          )
+        ],
       ),
       body: Row(children: [
         Expanded(
