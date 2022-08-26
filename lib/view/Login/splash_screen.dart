@@ -2,15 +2,15 @@
 import 'dart:async';
 
 //import 'package:crt_project/view/Login/user_role.dart';
+
 import 'package:flutter/material.dart';
 
 //import '../screens/Roles/lead/lead_homepage.dart';
 //import 'forgot_password.dart';
 //import '../screens/Roles/lead/lead_reports/lead_reports.dart';
-import '../../practice/calender_events.dart';
+import '../../practice/Login2.dart';
 import '../../practice/demo_login.dart';
 import '../../practice/sql_Dropdown.dart';
-import '../../practice/web_app/add_employee.dart';
 import '../../practice/web_app/web_login.dart';
 import 'login.dart';
 
@@ -20,14 +20,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      home: AddEmployee(),
-
-        //home : WebLoginPage()
-      //home : MyLogin(),
-      //home : CalendarPage()
+      home : WebLoginPage(),
       //home: DemoAppBar(),
       //home: LeadPage(),
       //home:  SplashScreen(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:email_validator/email_validator.dart';
 
+import '../collapsiblesidebar.dart';
 import 'add_employee.dart';
 // import 'package:get/get.dart';
 
@@ -149,12 +150,9 @@ class _WebLoginPageState extends State<WebLoginPage> {
                                           if(form.validate()){
                                             final email = email_controller.text;
                                             print(email);
-                                            showDialog(context: context, builder: (context) =>
-                                            //     AlertDialog(
-                                            //   title: Text('Alert Dialog box'),
-                                            // )
-                                              AddEmployee()
-                                            );
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(builder: (context) => const datagrid()));
                                           }
                                         },
                                         child: Text(

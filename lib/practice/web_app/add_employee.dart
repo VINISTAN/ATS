@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
+import '../collapsiblesidebar.dart';
 import 'dropdown_list.dart';
 
 class AddEmployee extends StatefulWidget {
@@ -58,7 +59,11 @@ class _AddEmployeeState extends State<AddEmployee> {
                               children: [
                                 IconButton(
                                   icon: Icon(Icons.arrow_back),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => const datagrid()));
+                                  },
                                 ),
                                 SizedBox(
                                   width: width / 30,
@@ -81,7 +86,11 @@ class _AddEmployeeState extends State<AddEmployee> {
                                       style: ElevatedButton.styleFrom(
                                         primary: Colors.white54
                                       ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          showDialog(context: context, builder: (context) =>
+                                          ConfirmationDialogBox()
+                                          );
+                                        },
                                         child: Text('CANCEL',style: TextStyle(color: Colors.black),))),
                                 SizedBox(
                                   width: width / 50,
@@ -90,7 +99,18 @@ class _AddEmployeeState extends State<AddEmployee> {
                                     height: height / 20,
                                     width: width / 10,
                                     child: ElevatedButton(
-                                        onPressed: () {}, child: Text('SAVE'))),
+                                        onPressed: () {
+                                          print("Inside Snackbar");
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                            content: Container(
+                                              height: height/30,
+                                                child: Text("Details saved successfully",style: TextStyle(color: Colors.yellow,fontWeight: FontWeight.bold),)),
+                                            duration: Duration(milliseconds: 900),
+                                          ));
+                                          // SnackBar(
+                                          //   content: Text("Details Saved Successfully"),
+                                          // );
+                                        }, child: Text('SAVE'))),
                               ],
                             ),
                           ],
@@ -817,3 +837,60 @@ class _AddEmployeeState extends State<AddEmployee> {
     );
   }
 }
+
+class ConfirmationDialogBox extends StatefulWidget {
+  const ConfirmationDialogBox({Key? key}) : super(key: key);
+
+  @override
+  State<ConfirmationDialogBox> createState() => _ConfirmationDialogBoxState();
+}
+
+class _ConfirmationDialogBoxState extends State<ConfirmationDialogBox> {
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return AlertDialog(
+      title: Container(
+        height: height/5,
+        width: width/4,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: Colors.white60
+        ),
+        child: Column(
+          children: [
+            Text("Do you want to exit.??"),
+            SizedBox(
+              height: height/60,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                  primary: Colors.grey
+              ),
+                  onPressed: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const datagrid()));
+                  }, child: Text("Exit")),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.blue),
+                      onPressed: (){
+                        Navigator.pop(context,'');
+                      }, child: Text("Cancel")),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+

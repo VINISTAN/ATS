@@ -51,6 +51,10 @@ dev_dependencies:
   flutter_pw_validator: ^1.4.2
   email_validator: '^2.1.16'
   get: ^4.6.5
+  syncfusion_flutter_datagrid: ^20.2.45
+  collapsible_sidebar: ^2.0.2
+  font_awesome_flutter: ^10.1.0
+  custom_pop_up_menu: ^1.2.4
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
