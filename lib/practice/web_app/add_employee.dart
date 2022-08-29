@@ -5,7 +5,8 @@ import '../collapsiblesidebar.dart';
 import 'dropdown_list.dart';
 
 class AddEmployee extends StatefulWidget {
-  const AddEmployee({Key? key}) : super(key: key);
+  final String email;
+  const AddEmployee({Key? key, required this.email}) : super(key: key);
 
   @override
   State<AddEmployee> createState() => _AddEmployeeState();
@@ -60,9 +61,10 @@ class _AddEmployeeState extends State<AddEmployee> {
                                 IconButton(
                                   icon: Icon(Icons.arrow_back),
                                   onPressed: () {
+                                    print(widget.email);
                                     Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) => const datagrid()));
+                                        MaterialPageRoute(builder: (context) => datagrid(value: widget.email,)));
                                   },
                                 ),
                                 SizedBox(
@@ -87,8 +89,9 @@ class _AddEmployeeState extends State<AddEmployee> {
                                         primary: Colors.white54
                                       ),
                                         onPressed: () {
+                                        print(widget.email);
                                           showDialog(context: context, builder: (context) =>
-                                          ConfirmationDialogBox()
+                                          ConfirmationDialogBox(e_mail: widget.email,)
                                           );
                                         },
                                         child: Text('CANCEL',style: TextStyle(color: Colors.black),))),
@@ -839,7 +842,8 @@ class _AddEmployeeState extends State<AddEmployee> {
 }
 
 class ConfirmationDialogBox extends StatefulWidget {
-  const ConfirmationDialogBox({Key? key}) : super(key: key);
+  final String e_mail;
+  const ConfirmationDialogBox({Key? key, required this.e_mail}) : super(key: key);
 
   @override
   State<ConfirmationDialogBox> createState() => _ConfirmationDialogBoxState();
@@ -850,7 +854,8 @@ class _ConfirmationDialogBoxState extends State<ConfirmationDialogBox> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return AlertDialog(
+    return
+      AlertDialog(
       title: Container(
         height: height/5,
         width: width/4,
@@ -876,7 +881,7 @@ class _ConfirmationDialogBoxState extends State<ConfirmationDialogBox> {
                   onPressed: (){
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const datagrid()));
+                        MaterialPageRoute(builder: (context) => datagrid(value: widget.e_mail)));
                   }, child: Text("Exit")),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(

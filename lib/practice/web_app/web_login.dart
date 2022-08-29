@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 
 import '../collapsiblesidebar.dart';
-import 'add_employee.dart';
 // import 'package:get/get.dart';
 
 class WebLoginPage extends StatefulWidget {
@@ -150,10 +149,14 @@ class _WebLoginPageState extends State<WebLoginPage> {
                                           if(form.validate()){
                                             final email = email_controller.text;
                                             print(email);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(builder: (context) => const datagrid()));
+                                            var route = new MaterialPageRoute(builder: (BuildContext context) => new datagrid(value : email_controller.text));
+                                            Navigator.of(context).push(route);
+                                            // Navigator.push(
+                                            //     context,
+                                            //     MaterialPageRoute(builder: (context) => const datagrid(value: email_controller.text,)));
                                           }
+                                          // var route = new MaterialPageRoute(builder: (BuildContext context) => new datagrid(value : email_controller.text));
+                                          // Navigator.of(context).push(route);
                                         },
                                         child: Text(
                                           "Login",
