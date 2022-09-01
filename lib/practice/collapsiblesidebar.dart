@@ -6,6 +6,7 @@ import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:crt_project/practice/web_app/add_employee.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 // import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 
@@ -32,14 +33,16 @@ class SidebarPage extends StatefulWidget {
 
 class _SidebarPageState extends State<SidebarPage> {
   late List<CollapsibleItem> _items;
-  late String _headline;
-  AssetImage _avatarImg = AssetImage('assets/images/dashboardIcon.png.JPG');
+  // late String _headline;
+  AssetImage _avatarImg = AssetImage('assets/images/dashboardIcon.png');
+  //AssetImage _avatarImg = Container(color: HexColor("#ebf7f3"),) as AssetImage;
+
 
   @override
   void initState() {
     super.initState();
     _items = _generateItems;
-    _headline = _items.firstWhere((item) => item.isSelected).text;
+    //_headline = _items.firstWhere((item) => item.isSelected).text;
   }
 
   List<CollapsibleItem> get _generateItems {
@@ -47,38 +50,38 @@ class _SidebarPageState extends State<SidebarPage> {
       CollapsibleItem(
         text: 'Dashboard',
         icon: Icons.assessment,
-        onPressed: () => setState(() => _headline = 'DashBoard'),
+        onPressed: (){},
         isSelected: true,
       ),
       CollapsibleItem(
         text: 'Candidate',
         icon: Icons.icecream,
-        onPressed: () => setState(() => _headline = 'Errors'),
+        onPressed: (){},
       ),
       CollapsibleItem(
         text: 'Demand Report',
         icon: Icons.search,
-        onPressed: () => setState(() => _headline = 'Search'),
+        onPressed: (){},
       ),
       CollapsibleItem(
         text: 'Masters Page',
         icon: Icons.notifications,
-        onPressed: () => setState(() => _headline = 'Notifications'),
+        onPressed: (){},
       ),
       CollapsibleItem(
         text: 'Report',
         icon: Icons.settings,
-        onPressed: () => setState(() => _headline = 'Settings'),
+        onPressed: (){},
       ),
       CollapsibleItem(
         text: 'Submission Report',
         icon: Icons.home,
-        onPressed: () => setState(() => _headline = 'Home'),
+        onPressed: (){},
       ),
       CollapsibleItem(
         text: 'Team Management',
         icon: Icons.access_alarm,
-        onPressed: () => setState(() => _headline = 'Alarm'),
+        onPressed: (){},
       )
     ];
   }
@@ -91,20 +94,21 @@ class _SidebarPageState extends State<SidebarPage> {
         isCollapsed: MediaQuery.of(context).size.width <= 800,
          items: _items,
          avatarImg: _avatarImg,
-         iconSize: 15,
-        // title: 'SightSpectrum',
-        // onTitleTap: () {
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //       SnackBar(content: Text('Yay! Flutter Collapsible Sidebar!')));
-        // },
+         iconSize: 20,
+         title: '',
+        onTitleTap: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Yay! Flutter Collapsible Sidebar!')));
+        },
+        //body: girdview(title: '',),
         body: _body(size, context),
-        backgroundColor: Colors.grey.shade300,
+        backgroundColor: HexColor("#dce0e6"),
         selectedTextColor: Colors.black,
-        selectedIconBox: Colors.grey.shade50,
-        textStyle: TextStyle(fontSize: 15, fontStyle: FontStyle.italic),
+        selectedIconBox: HexColor("#e3e5e6"),
+        textStyle: TextStyle(fontSize: 15, fontStyle: FontStyle.normal),
         titleStyle: TextStyle(
             fontSize: 15,
-            fontStyle: FontStyle.italic,
+            fontStyle: FontStyle.normal,
             fontWeight: FontWeight.bold),
         toggleTitle: '     ',
         toggleTitleStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
@@ -136,12 +140,12 @@ class _SidebarPageState extends State<SidebarPage> {
           angle: math.pi / 2,
           child: Transform.translate(
             offset: Offset(-size.height * 0.3, -size.width * 0.23),
-            child: Text(
-              _headline,
-              style: Theme.of(context).textTheme.headline1,
-              overflow: TextOverflow.visible,
-              softWrap: false,
-            ),
+            // child: Text(
+            //   _headline,
+            //   style: Theme.of(context).textTheme.headline1,
+            //   overflow: TextOverflow.visible,
+            //   softWrap: true,
+            // ),
           ),
         ),
       ),
@@ -278,21 +282,21 @@ class _girdviewState extends State<girdview> {
   List<Employee> getEmployeeData() {
     return [
       Employee(10001, 'devi', 'Associate', 'Project Lead', 'kunal', 20000,
-          'vinis@gmail.com', 1234454544, '20-08-2021'),
+          'vinis@gmail.com', 1234454544, '20-08-2021',),
       Employee(10002, 'Karthi', 'Associate', 'Manager', 'kunal', 30000,
-          'thiru@gmail.com', 8945545444, '20-08-2021'),
+          'thiru@gmail.com', 8945545444, '20-08-2021',),
       Employee(10003, 'priya', 'Associate', 'Developer', 'kunal', 15000,
-          'devi@gmail.com', 9876543221, '20-08-2021'),
+          'devi@gmail.com', 9876543221, '20-08-2021',),
       Employee(10004, 'suba', 'Associate', 'Designer', 'kunal', 12000,
-          'aravind@gmail.com', 1234454544, '20-08-2021'),
+          'aravind@gmail.com', 1234454544, '20-08-2021',),
       Employee(10005, 'Martin', 'Associate', 'Developer', 'kunal', 15000,
-          'venkat@gmail.com', 8945545444, '20-08-2021'),
+          'venkat@gmail.com', 8945545444, '20-08-2021',),
       Employee(10006, 'sathiya', 'Associate', 'Developer', 'kunal', 15000,
-          'subashree@gmail.com', 8945545444, '20-08-2021'),
+          'subashree@gmail.com', 8945545444, '20-08-2021',),
       Employee(10007, 'Anand', 'Associate', 'Developer', 'kunal', 15000,
-          'sadhu@gmail.com', 9876543221, '20-08-2022'),
+          'sadhu@gmail.com', 9876543221, '20-08-2022',),
       Employee(10008, 'thiru', 'Associate', 'Tech.Writer', 'kunal', 10000,
-          'pradeep@gmail.com', 1234454544, '20-08-2021'),
+          'pradeep@gmail.com', 1234454544, '20-08-2021',),
       Employee(10009, 'Gable', 'Associate', 'Developer', 'kunal', 15000,
           'ram@gmail.com', 8945545444, '20-08-2021'),
       Employee(10010, 'Aravind', 'Associate', 'Sr.Developer', 'kunal', 18000,
@@ -322,6 +326,7 @@ class EmployeeDataSource extends DataGridSource {
                   columnName: 'Mobile', value: dataGridRow.Mobile),
               DataGridCell<String>(
                   columnName: 'JoiningDate', value: dataGridRow.JoiningDate),
+
             ]))
         .toList();
   }
@@ -363,38 +368,6 @@ class Employee {
   final int Mobile;
   final String JoiningDate;
 }
-
-// class TestingPage extends StatefulWidget {
-//   const TestingPage({Key? key}) : super(key: key);
-//
-//   @override
-//   State<TestingPage> createState() => _TestingPageState();
-// }
-//
-// class _TestingPageState extends State<TestingPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         actions: [],
-//       ),
-//       body: Row(children: [
-//         Expanded(
-//           flex: 2,
-//           child: SidebarPage(),
-//         ),
-//         Expanded(
-//           flex: 9,
-//           child: Container(
-//             child: girdview(
-//               title: ' ',
-//             ),
-//           ),
-//         ),
-//       ]),
-//     );
-//   }
-// }
 
 class datagrid extends StatefulWidget {
   final String value;
