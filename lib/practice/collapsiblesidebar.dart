@@ -89,14 +89,14 @@ class _SidebarPageState extends State<SidebarPage> {
     return SafeArea(
       child: CollapsibleSidebar(
         isCollapsed: MediaQuery.of(context).size.width <= 800,
-        items: _items,
-        avatarImg: _avatarImg,
-        iconSize: 20,
-        title: 'SightSpectrum',
-        onTitleTap: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Yay! Flutter Collapsible Sidebar!')));
-        },
+         items: _items,
+        // avatarImg: _avatarImg,
+        // iconSize: 20,
+        // title: 'SightSpectrum',
+        // onTitleTap: () {
+        //   ScaffoldMessenger.of(context).showSnackBar(
+        //       SnackBar(content: Text('Yay! Flutter Collapsible Sidebar!')));
+        // },
         body: _body(size, context),
         backgroundColor: Colors.grey.shade300,
         selectedTextColor: Colors.black,
