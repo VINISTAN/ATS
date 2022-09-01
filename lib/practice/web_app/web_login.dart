@@ -174,7 +174,8 @@ class _WebLoginPageState extends State<WebLoginPage> {
                       ),
                     ),
                   ),
-                ))
+                ),
+            ),
           ],
         ),
       ),

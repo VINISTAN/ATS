@@ -6,6 +6,9 @@ import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:crt_project/practice/web_app/add_employee.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:focused_menu/focused_menu.dart';
+import 'package:focused_menu/modals.dart';
 
 // import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 
@@ -90,23 +93,23 @@ class _SidebarPageState extends State<SidebarPage> {
       child: CollapsibleSidebar(
         isCollapsed: MediaQuery.of(context).size.width <= 800,
          items: _items,
-        // avatarImg: _avatarImg,
-        // iconSize: 20,
-        // title: 'SightSpectrum',
-        // onTitleTap: () {
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //       SnackBar(content: Text('Yay! Flutter Collapsible Sidebar!')));
-        // },
+         avatarImg: _avatarImg,
+         iconSize: 15,
+         title: 'SightSpectrum',
+        onTitleTap: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Yay! Flutter Collapsible Sidebar!')));
+        },
         body: _body(size, context),
-        backgroundColor: Colors.grey.shade300,
+        backgroundColor: HexColor("#ebf7f3"),
         selectedTextColor: Colors.black,
-        selectedIconBox: Colors.grey.shade50,
-        textStyle: TextStyle(fontSize: 15, fontStyle: FontStyle.italic),
+        selectedIconBox: HexColor("#e3e5e6"),
+        textStyle: TextStyle(fontSize: 15, fontStyle: FontStyle.normal),
         titleStyle: TextStyle(
             fontSize: 20,
-            fontStyle: FontStyle.italic,
+            fontStyle: FontStyle.normal,
             fontWeight: FontWeight.bold),
-        toggleTitle: '     ',
+        toggleTitle: '',
         toggleTitleStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         sidebarBoxShadow: [
           BoxShadow(
@@ -334,18 +337,84 @@ class EmployeeDataSource extends DataGridSource {
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {
     return DataGridRowAdapter(
-        cells: row.getCells().map<Widget>((dataGridCell) {
-      return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          alignment: (dataGridCell.columnName == 'Employeeid' ||
-                  dataGridCell.columnName == 'JoiningDate')
-              ? Alignment.centerRight
-              : Alignment.centerLeft,
-          child: Text(
-            dataGridCell.value.toString(),
-            overflow: TextOverflow.ellipsis,
-          ));
-    }).toList());
+        cells: [
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[0].value.toString()),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[1].value),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[2].value.toString()),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[3].value.toString()),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+
+            child: Text(row.getCells()[4].value),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[5].value.toString()),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[6].value.toString()),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[7].value.toString()),
+          ),
+          Container(
+              alignment: Alignment.centerRight,
+              padding:  EdgeInsets.symmetric(horizontal: 16),
+              child:  Row(children: [Text(row.getCells()[8].value),
+                Expanded(
+                  child: FocusedMenuHolder(
+                    //menuWidth: MediaQuery.of(context).size.width*0.50,
+                      blurSize: 5.0,
+                      menuItemExtent: 45,
+                      menuBoxDecoration: BoxDecoration(color: Colors.grey,borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                      duration: Duration(milliseconds: 100),
+                      animateMenuItems: true,
+                      blurBackgroundColor: Colors.black54,
+                      bottomOffsetHeight: 100,
+                      openWithTap: true,
+                      menuItems: [
+                        FocusedMenuItem(
+                            title: Text("Edit"),
+                            trailingIcon : Icon(Icons.edit),
+                            onPressed: (){}
+                        ),
+                        FocusedMenuItem(
+                            title: Text("Delete"),
+                            trailingIcon : Icon(Icons.delete),
+                            onPressed: (){}
+                        )
+                      ],
+                      onPressed: () {},
+                      child: IconButton(icon : Icon(Icons.more_vert), onPressed: () {
+                        print('Inside MoreVert');
+                        //  const AlertBox();
+                      },)),
+                )
+              ],)
+          )
+        ]);
   }
 }
 
