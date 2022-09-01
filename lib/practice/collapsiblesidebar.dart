@@ -705,7 +705,7 @@ class _datagridState extends State<datagrid> {
                                 showDialog(
                                     context: context,
                                     builder: (context) =>
-                                        AddEmployee(email: widget.value));
+                                        AddEmployee(email: widget.value,));
 
 
                                 //AddEmployee());
