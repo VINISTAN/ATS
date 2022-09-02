@@ -7,6 +7,8 @@ import 'package:crt_project/practice/web_app/add_employee.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:focused_menu/focused_menu.dart';
+import 'package:focused_menu/modals.dart';
 
 // import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 
@@ -33,16 +35,14 @@ class SidebarPage extends StatefulWidget {
 
 class _SidebarPageState extends State<SidebarPage> {
   late List<CollapsibleItem> _items;
-  // late String _headline;
-  AssetImage _avatarImg = AssetImage('assets/images/dashboardIcon.png');
-  //AssetImage _avatarImg = Container(color: HexColor("#ebf7f3"),) as AssetImage;
-
+  late String _headline;
+  AssetImage _avatarImg = AssetImage('assets/images/crt_logo.JPG');
 
   @override
   void initState() {
     super.initState();
     _items = _generateItems;
-    //_headline = _items.firstWhere((item) => item.isSelected).text;
+    _headline = _items.firstWhere((item) => item.isSelected).text;
   }
 
   List<CollapsibleItem> get _generateItems {
@@ -50,38 +50,38 @@ class _SidebarPageState extends State<SidebarPage> {
       CollapsibleItem(
         text: 'Dashboard',
         icon: Icons.assessment,
-        onPressed: (){},
+        onPressed: () => setState(() => _headline = 'DashBoard'),
         isSelected: true,
       ),
       CollapsibleItem(
         text: 'Candidate',
         icon: Icons.icecream,
-        onPressed: (){},
+        onPressed: () => setState(() => _headline = 'Errors'),
       ),
       CollapsibleItem(
         text: 'Demand Report',
         icon: Icons.search,
-        onPressed: (){},
+        onPressed: () => setState(() => _headline = 'Search'),
       ),
       CollapsibleItem(
         text: 'Masters Page',
         icon: Icons.notifications,
-        onPressed: (){},
+        onPressed: () => setState(() => _headline = 'Notifications'),
       ),
       CollapsibleItem(
         text: 'Report',
         icon: Icons.settings,
-        onPressed: (){},
+        onPressed: () => setState(() => _headline = 'Settings'),
       ),
       CollapsibleItem(
         text: 'Submission Report',
         icon: Icons.home,
-        onPressed: (){},
+        onPressed: () => setState(() => _headline = 'Home'),
       ),
       CollapsibleItem(
         text: 'Team Management',
         icon: Icons.access_alarm,
-        onPressed: (){},
+        onPressed: () => setState(() => _headline = 'Alarm'),
       )
     ];
   }
@@ -94,24 +94,23 @@ class _SidebarPageState extends State<SidebarPage> {
         isCollapsed: MediaQuery.of(context).size.width <= 800,
          items: _items,
          avatarImg: _avatarImg,
-         iconSize: 20,
-         title: '',
+         iconSize: 15,
+         title: 'SightSpectrum',
         onTitleTap: () {
           ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Yay! Flutter Collapsible Sidebar!')));
         },
-        //body: girdview(title: '',),
         body: _body(size, context),
-        backgroundColor: HexColor("#dce0e6"),
+        backgroundColor: HexColor("#ebf7f3"),
         selectedTextColor: Colors.black,
         selectedIconBox: HexColor("#e3e5e6"),
         textStyle: TextStyle(fontSize: 15, fontStyle: FontStyle.normal),
         titleStyle: TextStyle(
-            fontSize: 15,
+            fontSize: 20,
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.bold),
-        toggleTitle: '     ',
-        toggleTitleStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+        toggleTitle: '',
+        toggleTitleStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         sidebarBoxShadow: [
           BoxShadow(
             color: Colors.lightBlueAccent,
@@ -140,12 +139,12 @@ class _SidebarPageState extends State<SidebarPage> {
           angle: math.pi / 2,
           child: Transform.translate(
             offset: Offset(-size.height * 0.3, -size.width * 0.23),
-            // child: Text(
-            //   _headline,
-            //   style: Theme.of(context).textTheme.headline1,
-            //   overflow: TextOverflow.visible,
-            //   softWrap: true,
-            // ),
+            child: Text(
+              _headline,
+              style: Theme.of(context).textTheme.headline1,
+              overflow: TextOverflow.visible,
+              softWrap: false,
+            ),
           ),
         ),
       ),
@@ -282,21 +281,21 @@ class _girdviewState extends State<girdview> {
   List<Employee> getEmployeeData() {
     return [
       Employee(10001, 'devi', 'Associate', 'Project Lead', 'kunal', 20000,
-          'vinis@gmail.com', 1234454544, '20-08-2021',),
+          'vinis@gmail.com', 1234454544, '20-08-2021'),
       Employee(10002, 'Karthi', 'Associate', 'Manager', 'kunal', 30000,
-          'thiru@gmail.com', 8945545444, '20-08-2021',),
+          'thiru@gmail.com', 8945545444, '20-08-2021'),
       Employee(10003, 'priya', 'Associate', 'Developer', 'kunal', 15000,
-          'devi@gmail.com', 9876543221, '20-08-2021',),
+          'devi@gmail.com', 9876543221, '20-08-2021'),
       Employee(10004, 'suba', 'Associate', 'Designer', 'kunal', 12000,
-          'aravind@gmail.com', 1234454544, '20-08-2021',),
+          'aravind@gmail.com', 1234454544, '20-08-2021'),
       Employee(10005, 'Martin', 'Associate', 'Developer', 'kunal', 15000,
-          'venkat@gmail.com', 8945545444, '20-08-2021',),
+          'venkat@gmail.com', 8945545444, '20-08-2021'),
       Employee(10006, 'sathiya', 'Associate', 'Developer', 'kunal', 15000,
-          'subashree@gmail.com', 8945545444, '20-08-2021',),
+          'subashree@gmail.com', 8945545444, '20-08-2021'),
       Employee(10007, 'Anand', 'Associate', 'Developer', 'kunal', 15000,
-          'sadhu@gmail.com', 9876543221, '20-08-2022',),
+          'sadhu@gmail.com', 9876543221, '20-08-2022'),
       Employee(10008, 'thiru', 'Associate', 'Tech.Writer', 'kunal', 10000,
-          'pradeep@gmail.com', 1234454544, '20-08-2021',),
+          'pradeep@gmail.com', 1234454544, '20-08-2021'),
       Employee(10009, 'Gable', 'Associate', 'Developer', 'kunal', 15000,
           'ram@gmail.com', 8945545444, '20-08-2021'),
       Employee(10010, 'Aravind', 'Associate', 'Sr.Developer', 'kunal', 18000,
@@ -326,7 +325,6 @@ class EmployeeDataSource extends DataGridSource {
                   columnName: 'Mobile', value: dataGridRow.Mobile),
               DataGridCell<String>(
                   columnName: 'JoiningDate', value: dataGridRow.JoiningDate),
-
             ]))
         .toList();
   }
@@ -339,18 +337,84 @@ class EmployeeDataSource extends DataGridSource {
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {
     return DataGridRowAdapter(
-        cells: row.getCells().map<Widget>((dataGridCell) {
-      return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          alignment: (dataGridCell.columnName == 'Employeeid' ||
-                  dataGridCell.columnName == 'JoiningDate')
-              ? Alignment.centerRight
-              : Alignment.centerLeft,
-          child: Text(
-            dataGridCell.value.toString(),
-            overflow: TextOverflow.ellipsis,
-          ));
-    }).toList());
+        cells: [
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[0].value.toString()),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[1].value),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[2].value.toString()),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[3].value.toString()),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+
+            child: Text(row.getCells()[4].value),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[5].value.toString()),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[6].value.toString()),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(row.getCells()[7].value.toString()),
+          ),
+          Container(
+              alignment: Alignment.centerRight,
+              padding:  EdgeInsets.symmetric(horizontal: 16),
+              child:  Row(children: [Text(row.getCells()[8].value),
+                Expanded(
+                  child: FocusedMenuHolder(
+                    //menuWidth: MediaQuery.of(context).size.width*0.50,
+                      blurSize: 5.0,
+                      menuItemExtent: 45,
+                      menuBoxDecoration: BoxDecoration(color: Colors.grey,borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                      duration: Duration(milliseconds: 100),
+                      animateMenuItems: true,
+                      blurBackgroundColor: Colors.black54,
+                      bottomOffsetHeight: 100,
+                      openWithTap: true,
+                      menuItems: [
+                        FocusedMenuItem(
+                            title: Text("Edit"),
+                            trailingIcon : Icon(Icons.edit),
+                            onPressed: (){}
+                        ),
+                        FocusedMenuItem(
+                            title: Text("Delete"),
+                            trailingIcon : Icon(Icons.delete),
+                            onPressed: (){}
+                        )
+                      ],
+                      onPressed: () {},
+                      child: IconButton(icon : Icon(Icons.more_vert), onPressed: () {
+                        print('Inside MoreVert');
+                        //  const AlertBox();
+                      },)),
+                )
+              ],)
+          )
+        ]);
   }
 }
 
@@ -368,6 +432,38 @@ class Employee {
   final int Mobile;
   final String JoiningDate;
 }
+
+// class TestingPage extends StatefulWidget {
+//   const TestingPage({Key? key}) : super(key: key);
+//
+//   @override
+//   State<TestingPage> createState() => _TestingPageState();
+// }
+//
+// class _TestingPageState extends State<TestingPage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         actions: [],
+//       ),
+//       body: Row(children: [
+//         Expanded(
+//           flex: 2,
+//           child: SidebarPage(),
+//         ),
+//         Expanded(
+//           flex: 9,
+//           child: Container(
+//             child: girdview(
+//               title: ' ',
+//             ),
+//           ),
+//         ),
+//       ]),
+//     );
+//   }
+// }
 
 class datagrid extends StatefulWidget {
   final String value;
