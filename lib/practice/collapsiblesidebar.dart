@@ -80,6 +80,7 @@ class _SidebarPageState extends State<SidebarPage> {
       ),
       CollapsibleItem(
         text: 'Team Management',
+
         icon: Icons.access_alarm,
         onPressed: () => setState(() => _headline = 'Alarm'),
       )
@@ -94,7 +95,7 @@ class _SidebarPageState extends State<SidebarPage> {
         isCollapsed: MediaQuery.of(context).size.width <= 800,
          items: _items,
          avatarImg: _avatarImg,
-         iconSize: 15,
+         iconSize: 20,
          title: 'SightSpectrum',
         onTitleTap: () {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -102,8 +103,11 @@ class _SidebarPageState extends State<SidebarPage> {
         },
         body: _body(size, context),
         backgroundColor: HexColor("#ebf7f3"),
-        selectedTextColor: Colors.black,
+        selectedTextColor:Colors.black,
         selectedIconBox: HexColor("#e3e5e6"),
+        unselectedTextColor:HexColor("#080707"),
+        //curve: Curves.fastLinearToSlowEaseIn,
+        showToggleButton: true,
         textStyle: TextStyle(fontSize: 15, fontStyle: FontStyle.normal),
         titleStyle: TextStyle(
             fontSize: 20,
@@ -111,6 +115,7 @@ class _SidebarPageState extends State<SidebarPage> {
             fontWeight: FontWeight.bold),
         toggleTitle: '',
         toggleTitleStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+
         sidebarBoxShadow: [
           BoxShadow(
             color: Colors.lightBlueAccent,
@@ -156,6 +161,7 @@ class girdview extends StatefulWidget {
   const girdview({Key? key, required this.title}) : super(key: key);
   final String title;
 
+
   @override
   State<girdview> createState() => _girdviewState();
 }
@@ -163,12 +169,14 @@ class girdview extends StatefulWidget {
 class _girdviewState extends State<girdview> {
   late List<Employee> _employees;
   late EmployeeDataSource _employeeDataSource;
+  bool _active = false;
 
   @override
   void initState() {
     super.initState();
     _employees = getEmployeeData();
     _employeeDataSource = EmployeeDataSource(_employees);
+    _active = !_active;
   }
 
   @override
@@ -183,11 +191,23 @@ class _girdviewState extends State<girdview> {
         source: _employeeDataSource,
         columns: [
           GridColumn(
+              columnName: 'Radio',
+              //autoFitPadding: EdgeInsets.all(8.0),
+              label: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                alignment: Alignment.centerRight,
+                child: const Text(
+                  '',
+                  overflow: TextOverflow.ellipsis,
+                ),
+              )),
+          GridColumn(
               columnName: 'Employeeid',
               autoFitPadding: EdgeInsets.all(8.0),
               label: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 alignment: Alignment.centerRight,
+
                 child: const Text(
                   'EmployeeID',
                   overflow: TextOverflow.ellipsis,
@@ -198,7 +218,7 @@ class _girdviewState extends State<girdview> {
               autoFitPadding: EdgeInsets.all(10.0),
               label: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.centerRight,
                   child: const Text(
                     'FullName',
                     overflow: TextOverflow.ellipsis,
@@ -209,7 +229,7 @@ class _girdviewState extends State<girdview> {
               //   visible: false,
               label: Container(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.centerRight,
                   child: const Text(
                     'Designation',
                     overflow: TextOverflow.ellipsis,
@@ -219,7 +239,7 @@ class _girdviewState extends State<girdview> {
               autoFitPadding: EdgeInsets.all(10.0),
               label: Container(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.center,
                   child: const Text(
                     'Lead',
                     overflow: TextOverflow.ellipsis,
@@ -229,7 +249,7 @@ class _girdviewState extends State<girdview> {
               autoFitPadding: EdgeInsets.all(10.0),
               label: Container(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.center,
                   child: const Text(
                     'Manager',
                     overflow: TextOverflow.ellipsis,
@@ -239,20 +259,20 @@ class _girdviewState extends State<girdview> {
               autoFitPadding: EdgeInsets.all(10.0),
               label: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.center,
                   child: const Text(
                     'Salary',
                     overflow: TextOverflow.ellipsis,
                   ))),
           GridColumn(
               columnName: 'Email',
-              autoFitPadding: EdgeInsets.all(10.0),
+             // autoFitPadding: EdgeInsets.all(10.0),
               label: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 18.0),
                   alignment: Alignment.center,
                   child: const Text(
                     'Email',
-                    // overflow: TextOverflow.ellipsis,
+                    overflow: TextOverflow.ellipsis,
                   ))),
           GridColumn(
               columnName: 'Mobile',
@@ -262,6 +282,7 @@ class _girdviewState extends State<girdview> {
                   alignment: Alignment.center,
                   child: const Text(
                     'Mobile',
+                    overflow: TextOverflow.ellipsis,
                   ))),
           GridColumn(
               columnName: 'JoiningDate',
@@ -308,6 +329,8 @@ class EmployeeDataSource extends DataGridSource {
   EmployeeDataSource(List<Employee> employees) {
     dataGridRows = employees
         .map<DataGridRow>((dataGridRow) => DataGridRow(cells: [
+          // DataGridCell<String>(
+          //     columnName: 'new', value: dataGridRow.new),
               DataGridCell<int>(
                   columnName: 'Employeeid', value: dataGridRow.Employeeid),
               DataGridCell<String>(
@@ -328,20 +351,36 @@ class EmployeeDataSource extends DataGridSource {
             ]))
         .toList();
   }
-
   late List<DataGridRow> dataGridRows;
 
   @override
   List<DataGridRow> get rows => dataGridRows;
 
+
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {
+    bool _active = false;
     return DataGridRowAdapter(
         cells: [
           Container(
             alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal:8),
+            child:  Container(
+              height: 8,
+              width: 8,
+             decoration: BoxDecoration(
+               borderRadius:  BorderRadius.circular(10),
+              color: _active ? Colors.grey[700] : Colors.green[600],
+             ),
+            )
+          ),
+          Container(
+            alignment: Alignment.center,
             padding: EdgeInsets.symmetric(horizontal: 16),
+           // child: Radio(groupValue: null, value: null,),
             child: Text(row.getCells()[0].value.toString()),
+            // _active ? 'Active' : 'Inactive',
+
           ),
           Container(
             alignment: Alignment.center,
@@ -361,7 +400,6 @@ class EmployeeDataSource extends DataGridSource {
           Container(
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(horizontal: 16),
-
             child: Text(row.getCells()[4].value),
           ),
           Container(
@@ -413,10 +451,13 @@ class EmployeeDataSource extends DataGridSource {
                       },)),
                 )
               ],)
+   
           )
         ]);
   }
 }
+
+
 
 class Employee {
   Employee(this.Employeeid, this.name, this.designation, this.Lead,
